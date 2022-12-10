@@ -11,11 +11,11 @@ router.get('/', function (req, res) {
 
 // End
 
-// API V1路由
+// API V1路锟斤拷
 var v1 = require('./v1');
 router.use('/v1', v1);
 
-//API V2路由
+//API V2路锟斤拷
 //var v2 = require('./v2');
 //router.use('/v2', v2);
 
