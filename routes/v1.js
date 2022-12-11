@@ -8,8 +8,19 @@ router.get('/', function (req, res) {
     res.status(200).json({ code: 200, data: { message: "Welcome to BianAPI V1" } });
     res.end();
 });
-router.get('/one', function (req, res) {
-    res.status(200).json({user:"awa"});
+//回声洞
+router.get('/echo-hole', function (req, res) {
+
+    res.redirect(301,'/assets/echo-hole.json')
 });
-router
+router.get('/echo-hole/:id', function (req, res) {
+    var data = require("../assets/echo-hole.json")
+    res.status(200).json(data["data"][req.params.id])
+
+});
+
 module.exports = router;
+
+function isNumber(arg) {
+    return typeof arg === 'number';
+  }

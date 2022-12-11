@@ -21,6 +21,7 @@ console.log(config);
 app.use(cookieParser());
 app.use(logger('dev'));
 
+app.use('/assets', express.static('assets'));
 app.use('/', routes);
 
 //对无路径处理
