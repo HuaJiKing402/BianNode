@@ -11,9 +11,19 @@ router.get('/', function (req, res) {
 });
 
 
-//回声洞
-router.get('/echo-hole/list', function (req, res) {
+router.get('/echo-hole', function (req, res){
+    function getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min)) + min; //不含最大值，含最小值
+    }
+    var data = require('../assets/echo-hole.json')
+    var data = data["data"];
+    res.status(200).json(data[getRandomInt(0,(data.length-1))]);
+});
 
+//回声洞
+router.get('/echo-hole/cache', function (req, res) {
     res.redirect(301,'/assets/echo-hole.json')
 });
 

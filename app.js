@@ -1,26 +1,33 @@
 ﻿'use strict';
-var debug = require('debug')('my express app');
+//express模块引入
+var debug = require('debug')('biannode');
 var express = require('express');
-var path = require('path');
+
+//日志、cookie引入
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
 
+//路由引入
 var routes = require('./routes/index');
 
+//配置文件
+var config = require('./config');
 var app = express();
 
-var config = require('./config');
-console.log("配置文件：")
-console.log(config);
+//设置监听端口
+//config["server"]["port"] 配置文件-端口
+if(config["env"]["on_model"]){
+    app.set('port', config["server"]["port"][1]);
+}
+else {    
+    app.set('port', config["server"]["port"][0]);
+}
 
-// view engine setup
-
-// uncomment after placing your favicon in /public
-//app.use(favicon(__dirname + '/public/favicon.ico'));
+//启用日志、cookie
 app.use(cookieParser());
 app.use(logger('dev'));
 
+//启用路由系统
 app.use('/assets', express.static('assets'));
 app.use('/', routes);
 
@@ -28,10 +35,6 @@ app.use('/', routes);
 app.use((req, res, next) => {
     res.status(404).json({ "code": 404, "data": { "message": "404 Not Found" } });
 })
-
-//设置监听端口
-//config["server"]["port"] 配置文件-端口
-app.set('port', config["server"]["port"]);
 
 //启动服务器
 var server = app.listen(app.get('port'), function () {

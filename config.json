@@ -1,9 +1,10 @@
 ﻿{
   "env":{
+    "on_model":true,
     "assets_path":"E:\\BianNode\\assets",
     "cache_path":"E:\\BianNode\\cache"
   },
   "server": {
-    "port": 25565
+    "port": [25565,443]
   }
 }
