@@ -1,5 +1,9 @@
 ﻿{
+  "env":{
+    "assets_path":"E:\\BianNode\\assets",
+    "cache_path":"E:\\BianNode\\cache"
+  },
   "server": {
-    "port": 80
+    "port": 25565
   }
 }
